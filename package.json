@@ -1,0 +1,12 @@
+{
+  "name": "vocabison",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "devDependencies": {
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-clean-css": "^2.0.13",
+    "gulp-sass": "^2.3.2"
+  }
+}
