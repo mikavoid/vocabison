@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { Meteor } from 'meteor/meteor'
+import Header from '../Header/Header';
 
 class App extends Component {
     render () {
         return (
-            <div>OKKKKKK</div>
+            <div>
+                <Header />
+                <div className="container">
+                    <h1>Test</h1>
+                </div>
+            </div>
         )
     }
 }
