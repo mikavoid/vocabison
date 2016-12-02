@@ -1,0 +1,62 @@
+#header {
+  height:$headerHeight;
+  max-height:$headerHeight;
+  //overflow: hidden;
+
+  @include mp0;
+  .header {
+    &__branding {
+      @include mp0;
+      @include span(6);
+      a.logo {
+        img {
+          height:$headerHeight / 1.4;
+        }
+      }
+    }
+    &__body {
+      @extend .header__branding;
+      @include span(10);
+    }
+  }
+}
+
+//Responsive
+@media(max-width : $breakSmartphone) {
+  .header__branding {
+    h1 {
+      display:none !important;
+    }
+  }
+}
+@media(max-width : $breakTablet) {
+  .header__branding {
+    h1 {
+      font-size:20px;
+    }
+  }
+  .header__body {
+    .loginButton {
+      display:none;
+    }
+    .burger {
+      display:inline-block!important;
+
+      text-align:right;
+
+      @include mp0();
+      .fa {
+        position:relative;
+        top:5px;
+        padding:0 15px;
+
+        font-size:30px;
+        color:$dark;
+        transition-duration:250ms;
+        &:hover, &:focus {
+          color:$primary;
+        }
+      }
+    }
+  }
+}

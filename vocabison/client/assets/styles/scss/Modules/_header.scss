@@ -1,0 +1,32 @@
+#header {
+  background-color:$light;
+  .header {
+    display:block;
+
+    background:pink;
+    &__branding {
+      line-height:$headerHeight;
+
+      a.logo {
+        display:inline-block;
+        float:left;
+        padding-right:15px;
+        img {
+          vertical-align:middle;
+        }
+      }
+
+      h1 {
+        color:$dark;
+      }
+    }
+    &__body {
+      text-align:right;
+      .burger {
+        display:none;
+
+        @include mp0();
+      }
+    }
+  }
+}

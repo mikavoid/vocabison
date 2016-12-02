@@ -1,6 +1,7 @@
-.nav {
-  height:$navBarHeight;
+body {
+  font-family:$mainFont;
+}
 
-  line-height:$navBarHeight;
-  background:white;
+h1, h2, h3, h4, h5, h6, .display {
+  font-family:$focusFont;
 }

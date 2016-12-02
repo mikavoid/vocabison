@@ -1,2 +1,25 @@
-//Layout
-$navBarHeight : 50px;
+/*
+  Layout
+ */
+$headerHeight : 72px;
+
+/*
+  Colors
+ */
+$primary  : #177b97;
+$focus    : #cc113f;
+$light    : #f6f6f6;
+$dark     : darken(#797878, 15%);
+
+/*
+  Fonts
+ */
+$mainFont : Lato, sans-serif;
+$focusFont : Bungee, Lato, sans-serif;
+
+/*
+  Breakpoints
+ */
+$breakSmartphone : 630px;
+$breakTablet : 850px;
+$breakDesktop : 1280px;

@@ -27,7 +27,10 @@ const componentsStylesPaths = [getComponentStylesPath('App')];
  */
 gulp.task('main_sass', () => {
     gulp.src(paths.scss + '/**/**/*.scss')
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass({
+        outputStyle: 'compressed',
+        includePaths: require('node-normalize-scss').with('node_modules/susy/sass')
+    }).on('error', sass.logError))
     .pipe(autoprefixer({browsers: ['last 2 versions', 'ie >= 9', 'and_chr >= 2.3']}))
     .pipe(cleanCSS({compatibility: 'ie8'}))
     .pipe(gulp.dest(paths.css))
