@@ -1,27 +1,28 @@
 .button {
-  padding:10px 30px;
-  margin:0 5px;
+    padding:10px 30px;
+    margin:0 5px;
 
-  font-family:$mainFont;
-  font-size:80%;
-  font-weight:100;
-  color:lighten($dark, 20%);
-  text-transform:uppercase;
-  letter-spacing:.5px;
-  background-color:white;
-  border-radius:2px;
+    font-family:$mainFont;
+    font-size:80%;
+    font-weight:100;
+    color:lighten($dark, 20%);
+    text-transform:uppercase;
+    letter-spacing:.5px;
+    background-color:white;
+    border-radius:2px;
+    cursor : pointer;
 }
 
 .button.focus {
-  color:white;
-  background-color:$focus;
+    color:white;
+    background-color:$focus;
 
-  @extend .button;
+    @extend .button;
 }
 
 /*
-  Transitions&
- */
+Transitions&
+*/
 .button {
-  @include button-transition();
+    @include button-transition();
 }
