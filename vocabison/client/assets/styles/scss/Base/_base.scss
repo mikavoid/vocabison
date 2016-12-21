@@ -5,3 +5,11 @@ body {
 h1, h2, h3, h4, h5, h6, .display {
   font-family:$focusFont;
 }
+
+ul {
+    @include mp0;
+    list-style: none;
+    li {
+        display: inline-block;
+    }
+}

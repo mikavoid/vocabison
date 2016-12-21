@@ -1,7 +1,9 @@
 /*
   Layout
  */
-$headerHeight : 72px;
+$headerHeight       : 72px;
+$mobileHeaderWidth  : 50vw;
+$siteWidth          : 1920px;
 
 /*
   Colors
@@ -20,6 +22,7 @@ $focusFont : Bungee, Lato, sans-serif;
 /*
   Breakpoints
  */
+$breakSmartphoneMini : 320px;
 $breakSmartphone : 630px;
 $breakTablet : 850px;
 $breakDesktop : 1280px;

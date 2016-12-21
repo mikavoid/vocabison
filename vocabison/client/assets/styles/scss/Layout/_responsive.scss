@@ -1,0 +1,49 @@
+//Responsive
+@media(max-width : $breakSmartphoneMini) {
+    .header__branding {
+        h1 {
+            display:none !important;
+        }
+    }
+    .header__body__buttons {
+        li {
+            .button {
+                padding: 50px;
+                font-size : 15px;
+            }
+            
+        }
+    }
+}
+
+@media(max-width : $breakSmartphone) {
+    .header__branding {
+        h1 {
+            display:none !important;
+        }
+    }
+    .header__body__buttons {
+        li {
+            .button {
+                padding: 50px;
+                font-size : 50%;
+            }
+            
+        }
+    }
+}
+
+@media(max-width : $breakTablet) {
+    .header__branding {
+        h1 {
+            font-size:20px;
+        }
+    }
+    .header__body__buttons {
+        li {
+            .button {
+                padding: 10px;
+            }
+        }
+    }
+}

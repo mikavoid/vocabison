@@ -8,6 +8,7 @@
 /*
   Utils Imports
  */
+@import 'Utils/utils';
 @import 'Utils/mixins';
 
 /*
@@ -31,6 +32,7 @@ global-box-sizing : border-box
 @import 'Base/base';
 @import 'Layout/layout';
 @import 'Layout/grid';
+@import 'Layout/responsive';
 
 /*
   Bison Framework Import
