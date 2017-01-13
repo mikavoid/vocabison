@@ -1,17 +1,19 @@
 /*
   Layout
  */
-$headerHeight       : 72px;
+$siteWidth          : 1280px;
+$headerHeight       : 88px;
+$navBarHeight       : 51px;
 $mobileHeaderWidth  : 50vw;
-$siteWidth          : 1440px;
 
 /*
   Colors
  */
-$primary  : #177b97;
-$focus    : #cc113f;
-$light    : #f6f6f6;
-$dark     : darken(#797878, 15%);
+$primary      : #1b6579;
+$focus        : #cc113f;
+$light        : #f6f6f6;
+$dark         : darken(#797878, 15%);
+$lightBorder  : #cedadf;
 
 /*
   Fonts

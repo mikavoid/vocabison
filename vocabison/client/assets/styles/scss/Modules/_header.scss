@@ -3,7 +3,6 @@
   .header {
     display:block;
 
-    background:pink;
     &__branding {
       line-height:$headerHeight;
 
@@ -27,4 +26,17 @@
       text-align:right;
     }
   }
+}
+
+#navbar {
+    height:$navBarHeight;
+    width :100%;
+    background : $primary;
+    line-height:$navBarHeight;
+    ul li a {
+        color : white;
+        padding: 0 25px;
+        font-weight: 700;
+        font-size : 90%;
+    }
 }

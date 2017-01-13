@@ -1,0 +1,40 @@
+.heading {
+  .heading-icon {
+    color:$primary;
+    position: relative;
+    padding-right: 20px;
+  }
+  h1, h2, h3, h4, h5, h6, span.heading-icon {
+    display:inline-block;
+  }
+  h1, h2, h3, h4, h5 {
+    color : $dark;
+  }
+  h6 {
+    color : $focus;
+    font-size : $sizeH6;
+    letter-spacing:1.5px;
+    padding-bottom: 10px;
+  }
+  h1 {
+    font-size : $sizeH1;
+  }
+  &.heading-1 span.heading-icon {
+    font-size : $sizeH1 + 5;
+  }
+  &.heading-2 span.heading-icon {
+    font-size : 22px;
+  }
+  &.heading-3 span.heading-icon {
+    font-size : 16px;
+  }
+  &.heading-4 span.heading-icon {
+    font-size : 14px;
+  }
+  &.heading-5 span.heading-icon {
+    font-size : 12px;
+  }
+  &.heading-6 span.heading-icon {
+    font-size : $sizeH6 + 5;
+  }
+}

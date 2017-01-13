@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../Header/Header';
+//import Login from '../Pages/Login';
 
 
 class App extends Component {
@@ -10,7 +11,7 @@ class App extends Component {
     render () {
         return (
             <div>
-                <h1>{this.props.page}</h1>
+                ok
             </div>
         )
     }
