@@ -15,7 +15,7 @@ class SubmitButton extends React.Component {
     render () {
         return (
             <div className={'input-submit'}>
-                <button id={'input-' + this.props.id}>
+                <button id={'input-' + this.props.id} type="submit">
                     {this.props.value ? this.props.value : 'Submit'}
                 </button>
             </div>

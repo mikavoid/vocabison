@@ -1,28 +1,47 @@
 .button {
-    padding:10px 30px;
-    margin:0 5px;
+  padding: 10px 30px;
+  margin: 0 5px;
 
-    font-family:$mainFont;
-    font-size:85%;
-    font-weight:100;
-    color:$dark;
-    text-transform:uppercase;
-    letter-spacing:.5px;
-    background-color:white;
-    border-radius:2px;
-    cursor : pointer;
+  font-family: $mainFont;
+  font-size: 85%;
+  font-weight: 100;
+  color: $dark;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  background-color: white;
+  border-radius: 2px;
+  cursor: pointer;
 }
 
 .button.focus {
-    color:white;
-    background-color:$focus;
+  color: white;
+  background-color: $focus;
 
-    @extend .button;
+  @extend .button;
+}
+
+button.iconButton {
+  display: inline-block;
+  width: 100%;
+  min-height: 40px;
+  border:none;
+  background: $light;
+  cursor : pointer;
+  transition-duration: 300ms;
+  span {
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    line-height: 50px;
+  }
+  &:hover {
+    background-color : $focus;
+  }
 }
 
 /*
 Transitions&
 */
 .button {
-    @include button-transition();
+  @include button-transition();
 }

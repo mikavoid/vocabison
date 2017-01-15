@@ -9,14 +9,6 @@ class Header extends Component {
         super(props)
     }
 
-    /*toggleMobileHeader () {
-        console.log(!this.state.mobileMenuIsOpen);
-        this.setState({
-            mobileMenuIsOpen : !this.state.mobileMenuIsOpen
-        });
-    }*/
-
-
     render () {
         return (
             <MuiThemeProvider>
