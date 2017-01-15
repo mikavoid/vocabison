@@ -39,10 +39,10 @@ class Login extends Component {
                 email: inputs.email,
                 password: inputs.password
             }
-            Meteor.loginWithPassword(user.email, user.password, function(e) {
+            Meteor.loginWithPassword(user.email, user.password, (e) => {
                 if (e) {
-                    alert("error");
                     console.info(e)
+                    this.setState({form_error : e.reason});
                 } else {
                     FlowRouter.go('/')
                 }
