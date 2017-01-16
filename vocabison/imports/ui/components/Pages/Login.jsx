@@ -50,6 +50,33 @@ class Login extends Component {
         }
         return inputs;
     }
+    handleFacebookLogin(event) {
+        event.preventDefault();
+        console.log('Trying to login with facebook');
+        let options = {
+            requestPermissions: ['user_birthday', 'email', 'user_photos']
+        }
+        Meteor.loginWithFacebook(options, (error) => {
+           if (error) {
+               this.setState({'form_error' : error.message})
+           } else {
+               FlowRouter.go('/')
+           }
+        });
+    }
+
+    handleTwitterLogin(event) {
+        event.preventDefault();
+        console.log('Trying to login with twitter');
+        let options = {}
+        Meteor.loginWithTwitter(options, (error) => {
+            if (error) {
+                this.setState({'form_error' : error.message})
+            } else {
+                FlowRouter.go('/')
+            }
+        });
+    }
 
     handleSubmit(event) {
         event.preventDefault();
@@ -64,7 +91,7 @@ class Login extends Component {
                 <section id="login" className="login">
                     <div className="login__form-container">
                         <Heading icon="fa-sign-in" level="1">Login</Heading>
-                        <p className="help-line">Not registered with us yet ? <a href="#">Sign Up</a></p>
+                        <p className="help-line">Not registered with us yet ? <a href="/register">Sign Up</a></p>
                         <form onSubmit={this.handleSubmit.bind(this)}>
                             <input
                                 placeholder="Email Address"
@@ -89,9 +116,8 @@ class Login extends Component {
                         </form>
                         <Heading level="4">Or log in with social medias</Heading>
                         <div className="socialConnexionButtons">
-                            <button className="iconButton facebook"><span className="fa fa-facebook"></span></button>
-                            <button className="iconButton twitter"><span className="fa fa-twitter"></span></button>
-                            <button className="iconButton google"><span className="fa fa-google-plus"></span></button>
+                            <button onClick={this.handleFacebookLogin.bind(this)} className="iconButton facebook"><span className="fa fa-facebook"></span></button>
+                            <button onClick={this.handleTwitterLogin.bind(this)} className="iconButton twitter"><span className="fa fa-twitter"></span></button>
                         </div>
                     </div>
                 </section>

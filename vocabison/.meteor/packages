@@ -26,3 +26,8 @@ accounts-password
 react-meteor-data
 check
 msavin:mongol
+accounts-facebook
+accounts-google
+accounts-twitter
+service-configuration
+email

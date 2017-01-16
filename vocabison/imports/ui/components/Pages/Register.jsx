@@ -58,6 +58,35 @@ class Register extends Component {
         }
         return inputs;
     }
+
+    handleFacebookLogin(event) {
+        event.preventDefault();
+        console.log('Trying to login with facebook');
+        let options = {
+            requestPermissions: ['user_birthday', 'email', 'user_photos']
+        }
+        Meteor.loginWithFacebook(options, (error) => {
+            if (error) {
+                this.setState({'form_error' : error.message})
+            } else {
+                FlowRouter.go('/')
+            }
+        });
+    }
+
+    handleTwitterLogin(event) {
+        event.preventDefault();
+        console.log('Trying to login with twitter');
+        let options = {}
+        Meteor.loginWithTwitter(options, (error) => {
+            if (error) {
+                this.setState({'form_error': error.message})
+            } else {
+                FlowRouter.go('/')
+            }
+        });
+    }
+
     handleSubmit (event) {
         event.preventDefault();
 
@@ -74,9 +103,8 @@ class Register extends Component {
                         <p className="help-line">Already registered ? <a href="/login">Sign in</a></p>
                         <form onSubmit={this.handleSubmit.bind(this)}>
                             <div className="socialConnexionButtons">
-                                <button className="iconButton facebook"><span className="fa fa-facebook"></span></button>
-                                <button className="iconButton twitter"><span className="fa fa-twitter"></span></button>
-                                <button className="iconButton google"><span className="fa fa-google-plus"></span></button>
+                                <button onClick={this.handleFacebookLogin.bind(this)} className="iconButton facebook"><span className="fa fa-facebook"></span></button>
+                                <button onClick={this.handleTwitterLogin.bind(this)} className="iconButton twitter"><span className="fa fa-twitter"></span></button>
                             </div>
                             <Heading level="4">Or sign up with your email address</Heading>
                             <input
