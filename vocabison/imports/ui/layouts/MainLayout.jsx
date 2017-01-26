@@ -1,7 +1,7 @@
-import { Meteor }               from 'meteor/meteor'
+import {Meteor}                 from 'meteor/meteor'
 import React                    from 'react'
 import reactMixin               from 'react-mixin'
-import { ReactMeteorData }      from 'meteor/react-meteor-data'
+import {ReactMeteorData}        from 'meteor/react-meteor-data'
 import injectTapEventPlugin     from 'react-tap-event-plugin'
 
 //Import components
@@ -19,10 +19,10 @@ export class MainLayout extends React.Component {
     }
 
     getMeteorData() {
-        return  {
+        return {
             loggingIn: Meteor.loggingIn(),
-            hasUser : !!Meteor.user(),
-            isPublic( routeGroup ) {
+            hasUser: !!Meteor.user(),
+            isPublic(routeGroup) {
                 let publicRoutesGroup = [
                     'public'
                 ];
@@ -32,14 +32,14 @@ export class MainLayout extends React.Component {
             canView () {
                 return this.isPublic(FlowRouter.current().route.group.name) || !!Meteor.user()
             }
-        }    
+        }
     }
 
     loading() {
         return <div className="loading">Loading</div>
     }
 
-    getView () {
+    getView() {
         return this.data.canView();
     }
 
@@ -48,9 +48,9 @@ export class MainLayout extends React.Component {
         return (
             <div className="app-root">
                 <Header hasUser={this.data.hasUser}/>
-                <main>
-                    {this.getView() ? this.props.content : <Login />}
-                </main>
+                    <main>
+                        {this.getView() ? this.props.content : <Login />}
+                    </main>
                 <Footer />
             </div>
         )

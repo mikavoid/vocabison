@@ -1,6 +1,6 @@
 #header {
-  height:$headerHeight;
-  max-height:$headerHeight;
+  height: $headerHeight + $navBarHeight;
+  max-height: $headerHeight + $navBarHeight;
   //overflow: hidden;
 
   @include mp0;
@@ -10,7 +10,7 @@
       @include span(6);
       a.logo {
         img {
-          height:$headerHeight / 1.4;
+          height: $headerHeight / 1.4;
         }
       }
     }
@@ -20,5 +20,9 @@
     }
 
   }
+}
+
+section {
+  padding: $spaceL;
 }
 

@@ -1,12 +1,12 @@
-import {Meteor}     from 'meteor/meteor'
-import React, {Component}     from 'react'
+import {Meteor}                 from 'meteor/meteor'
+import React, {Component}       from 'react'
 import MuiThemeProvider         from 'material-ui/styles/MuiThemeProvider'
-import { createContainer }      from 'meteor/react-meteor-data'
+import {createContainer}        from 'meteor/react-meteor-data'
+import ReactCSSTransitionGroup  from 'react-addons-css-transition-group'
 
 //Import components
 import Heading                  from '../Heading/Heading'
-import TextField                from '../Forms/TextField';
-import SubmitButton                from '../Forms/SubmitButton';
+
 
 class Login extends Component {
 
@@ -39,17 +39,23 @@ class Login extends Component {
                 email: inputs.email,
                 password: inputs.password
             }
+
             Meteor.loginWithPassword(user.email, user.password, (e) => {
                 if (e) {
                     console.info(e)
-                    this.setState({form_error : e.reason});
+                    this.setState({form_error: e.reason});
                 } else {
-                    FlowRouter.go('/')
+                    if (!Meteor.user().emails[0].verified) {
+                        this.setState({form_error: "Please activate your email address"});
+                    } else {
+                        FlowRouter.go('/')
+                    }
                 }
             });
         }
         return inputs;
     }
+
     handleFacebookLogin(event) {
         event.preventDefault();
         console.log('Trying to login with facebook');
@@ -57,11 +63,11 @@ class Login extends Component {
             requestPermissions: ['user_birthday', 'email', 'user_photos']
         }
         Meteor.loginWithFacebook(options, (error) => {
-           if (error) {
-               this.setState({'form_error' : error.message})
-           } else {
-               FlowRouter.go('/')
-           }
+            if (error) {
+                this.setState({'form_error': error.message})
+            } else {
+                FlowRouter.go('/')
+            }
         });
     }
 
@@ -71,7 +77,7 @@ class Login extends Component {
         let options = {}
         Meteor.loginWithTwitter(options, (error) => {
             if (error) {
-                this.setState({'form_error' : error.message})
+                this.setState({'form_error': error.message})
             } else {
                 FlowRouter.go('/')
             }
@@ -87,8 +93,13 @@ class Login extends Component {
 
     render() {
         return (
-            <MuiThemeProvider>
-                <section id="login" className="login">
+            <section id="login" className="login">
+                <ReactCSSTransitionGroup
+                    transitionName="route"
+                    transitionAppear={true}
+                    transitionAppearTimeout={500}
+                    transitionEnter={false}
+                    transitionLeave={false}>
                     <div className="login__form-container">
                         <Heading icon="fa-sign-in" level="1">Login</Heading>
                         <p className="help-line">Not registered with us yet ? <a href="/register">Sign Up</a></p>
@@ -116,12 +127,18 @@ class Login extends Component {
                         </form>
                         <Heading level="4">Or log in with social medias</Heading>
                         <div className="socialConnexionButtons">
-                            <button onClick={this.handleFacebookLogin.bind(this)} className="iconButton facebook"><span className="fa fa-facebook"></span></button>
-                            <button onClick={this.handleTwitterLogin.bind(this)} className="iconButton twitter"><span className="fa fa-twitter"></span></button>
+                            <button onClick={this.handleFacebookLogin.bind(this)}
+                                    className="iconButton facebook"><span
+                                className="fa fa-facebook"></span></button>
+                            <button onClick={this.handleTwitterLogin.bind(this)}
+                                    className="iconButton twitter"><span
+                                className="fa fa-twitter"></span></button>
                         </div>
                     </div>
-                </section>
-            </MuiThemeProvider>
+                </ReactCSSTransitionGroup>
+            </section>
+
+
         )
     }
 }
