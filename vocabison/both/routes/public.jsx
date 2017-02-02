@@ -1,4 +1,5 @@
 import React                from 'react'
+import { Session }          from 'meteor/session'
 import { mount }            from 'react-mounter'
 import { MainLayout }       from '../../imports/ui/layouts/MainLayout'
 import App                  from '../../imports/ui/components/App/App'
@@ -9,18 +10,20 @@ const publicRoutes = FlowRouter.group({ name : 'public'})
 
 /** HOME **/
 publicRoutes.route("/", {
+    name : "home",
     action() {
-        name : "home",
         mount(MainLayout, {
             content: (<App page="Home"/>)
         });
-    } 
+    }
 });
 
 /** LOGIN **/
 publicRoutes.route("/login", {
     name : "login",
     action() {
+        Session.set("error", "");
+        Session.set("notice", "");
         mount(MainLayout, {
             content: (<Login />)
         });
@@ -51,7 +54,10 @@ publicRoutes.route("/verify-email/:token", {
 
 /** REGISTER **/
 publicRoutes.route("/register", {
+    name : "register",
     action() {
+        Session.set("error", false);
+        Session.set("notice", false);
         mount(MainLayout, {
             content: (<Register />)
         });

@@ -1,6 +1,10 @@
 #header {
   height: $headerHeight + $navBarHeight;
   max-height: $headerHeight + $navBarHeight;
+    &.no-navbar {
+        height : $headerHeight;
+        max-height : $headerHeight;
+    }
   //overflow: hidden;
 
   @include mp0;

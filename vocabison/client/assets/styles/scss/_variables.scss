@@ -4,6 +4,7 @@
 $siteWidth          : 1280px;
 $navBarHeight       : 51px;
 $headerHeight       : 88px;
+$footerHeight       : 50px;
 $mobileHeaderWidth  : 50vw;
 
 /*
@@ -19,10 +20,13 @@ $spaceL             : 60px;
  */
 $primary      : #1b6579;
 $focus        : #cc113f;
+$special      : #700a49;  
 $light        : #f6f6f6;
 $dark         : darken(#797878, 15%);
 $medium       : #bfbfbf;
 $lightBorder  : #cedadf;
+$error        : darken($focus, 15%);
+$notice       : lighten($primary, 15%)
 
 /*
   Social Medias Colors

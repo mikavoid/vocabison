@@ -1,28 +1,29 @@
 .socialConnexionButtons {
-  margin : 20px 0;
-  display:flex;
-  justify-content: space-between;
-  flex-direction:row;
-  width:100%;
-  height:80px;
-  button.iconButton {
-    background : $medium;
-    height : 80px;
-    width : 30%;
-    span {
-      line-height:80px;
+    margin : 20px 0;
+    display:flex;
+    justify-content: space-between;
+    flex-direction:row;
+    width:100%;
+    height:80px;
+    .iconButton {
+        background : $medium;
+        height : 80px;
+        text-align: center;
+        width : 45%;
+        span {
+            line-height:80px;
+        }
+        &:hover {
+            background:$primary;
+        }
+        &.facebook:hover {
+            background:$facebook;
+        }
+        &.twitter:hover {
+            background:$twitter;
+        }
+        &.google:hover {
+            background: $google;
+        }
     }
-    &:hover {
-      background:$primary;
-    }
-    &.facebook:hover {
-      background:$facebook;
-    }
-    &.twitter:hover {
-      background:$twitter;
-    }
-    &.google:hover {
-      background: $google;
-    }
-  }
 }

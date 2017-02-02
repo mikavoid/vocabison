@@ -29,6 +29,13 @@ export class MainLayout extends React.Component {
 
                 return publicRoutesGroup.indexOf(routeGroup) > -1;
             },
+            hasNavbar() {
+                let noNavbarRoutesName = [
+                    'login',
+                    'register'
+                ];
+                return noNavbarRoutesName.indexOf(FlowRouter.getRouteName()) <= -1;
+            },
             canView () {
                 return this.isPublic(FlowRouter.current().route.group.name) || !!Meteor.user()
             }
@@ -47,7 +54,7 @@ export class MainLayout extends React.Component {
     render() {
         return (
             <div className="app-root">
-                <Header hasUser={this.data.hasUser}/>
+                <Header hasUser={this.data.hasUser} hasNavbar={this.data.hasNavbar()}/>
                     <main>
                         {this.getView() ? this.props.content : <Login />}
                     </main>

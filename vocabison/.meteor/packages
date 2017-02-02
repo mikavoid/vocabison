@@ -32,3 +32,4 @@ accounts-twitter
 service-configuration
 email
 aldeed:simple-schema
+session

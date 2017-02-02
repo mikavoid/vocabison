@@ -12,7 +12,7 @@ class Header extends Component {
     render () {
         return (
             <MuiThemeProvider>
-                <header id="header" className="header">
+                <header id="header" className={"header " + (this.props.hasNavbar ? '' : 'no-navbar')}>
                     <div className="wrapper">
                         <div className="header__branding">
                             <a className="logo" href="#"><img src="images/logo-vocabison.png" alt="Vocabison's logo" title="Vocabison's logo"/></a>
@@ -25,7 +25,7 @@ class Header extends Component {
                             </ul>
                         </div>
                     </div>
-                <NavBar hasUser={this.props.hasUser}/>
+                    {this.props.hasNavbar ?  <NavBar hasUser={this.props.hasUser}/> : ''}
                 </header>
             </MuiThemeProvider>
         )

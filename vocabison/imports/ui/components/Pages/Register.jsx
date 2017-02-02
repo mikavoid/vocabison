@@ -1,26 +1,27 @@
-import {Meteor}               from 'meteor/meteor'
-import React, {Component}     from 'react'
-import {createContainer}      from 'meteor/react-meteor-data'
-import MuiThemeProvider         from 'material-ui/styles/MuiThemeProvider'
-import ReactCSSTransitionGroup  from 'react-addons-css-transition-group'
-import {check}                from 'meteor/check'
+import { Meteor }                   from 'meteor/meteor'
+import { Session }                  from 'meteor/session'
+import React, { Component }         from 'react'
+import { createContainer }          from 'meteor/react-meteor-data'
+import MuiThemeProvider             from 'material-ui/styles/MuiThemeProvider'
+import ReactCSSTransitionGroup      from 'react-addons-css-transition-group'
+import {check}                      from 'meteor/check'
 
 //Import components
 import Heading                  from '../Heading/Heading'
+import Alert                    from '../Alert/Alert'
 
 class Register extends Component {
 
     constructor(props) {
         super(props)
-        this.state = {
-            form_error: ''
-        };
     }
 
     getErrorMessage() {
-        if (this.state.form_error) {
-            return <p className="alert danger">{this.state.form_error}</p>
-        }
+        let message = this.props.errorMessage;
+        if (message) {
+           // Session.set("error", "");
+            return <Alert type="danger">{message} </Alert>
+    }
     }
 
     checkForm() {
@@ -32,23 +33,30 @@ class Register extends Component {
         //Check validity
         if (!inputs.email || !inputs.password || !inputs.password_confirmation) {
             //If a field is empty
-            this.setState({form_error: "A field is missing"});
+            Session.set("error", "A field is missing");
         } else {
             if (inputs.password !== inputs.password_confirmation) {
-                this.setState({form_error: "Passwords are not matching"});
+                Session.set("error", "Passwords are not matching");
             } else {
                 if (inputs.password.length < 7) {
-                    this.setState({form_error: "Password is too short (7 characters min)"});
+                    Session.set("error", "Password is too short (7 characters min)");
                 } else {
                     //Valid form
-                    this.setState({form_error: false});
                     const userOptions = {
                         username: inputs.email,
                         email: inputs.email,
                         password: inputs.password,
                         profile: []
                     }
-                    Meteor.call('user.add', userOptions);
+                    Meteor.call('user.add', userOptions, function (error, result) {
+                        if (error) {
+                            Session.set('error', error.message);
+                        } else {
+                            Session.set('notice', 'Thank you, you\'re now registred. We sent you an email, please click on the button on it to confirm your email address as soon as possible');
+                            FlowRouter.go('/login');
+                        }
+                        console.info(result);
+                    });
                 }
             }
         }
@@ -63,7 +71,7 @@ class Register extends Component {
         }
         Meteor.loginWithFacebook(options, (error) => {
             if (error) {
-                this.setState({'form_error': error.message})
+                Session.set("error", error.message)
             } else {
                 FlowRouter.go('/')
             }
@@ -76,7 +84,7 @@ class Register extends Component {
         let options = {}
         Meteor.loginWithTwitter(options, (error) => {
             if (error) {
-                this.setState({'form_error': error.message})
+                Session.set("error", error.message)
             } else {
                 FlowRouter.go('/')
             }
@@ -104,12 +112,15 @@ class Register extends Component {
                             <Heading icon="fa-user-plus" level="1">Register</Heading>
                             <p className="help-line">Already registered ? <a href="/login">Sign in</a></p>
                             <form onSubmit={this.handleSubmit.bind(this)}>
+
+                                {this.getErrorMessage()}
+
                                 <div className="socialConnexionButtons">
-                                    <button onClick={this.handleFacebookLogin.bind(this)}
-                                            className="iconButton facebook"><span className="fa fa-facebook"></span>
-                                    </button>
-                                    <button onClick={this.handleTwitterLogin.bind(this)} className="iconButton twitter">
-                                        <span className="fa fa-twitter"></span></button>
+                                    <a onClick={this.handleFacebookLogin.bind(this)}
+                                            className=" iconButton facebook"><span className="fa fa-facebook"></span>
+                                    </a>
+                                    <a onClick={this.handleTwitterLogin.bind(this)} className="iconButton twitter">
+                                        <span className="fa fa-twitter"></span></a>
                                 </div>
                                 <Heading level="4">Or sign up with your email address</Heading>
                                 <input
@@ -140,7 +151,6 @@ class Register extends Component {
                                     required
                                 />
 
-                                {this.getErrorMessage()}
                                 <div className={'input-submit'}>
                                     <button type="submit" id="submit">
                                         Register
@@ -157,5 +167,7 @@ class Register extends Component {
 }
 
 export default createContainer(() => {
-    return {}
+    return {
+        errorMessage: Session.get('error')
+    }
 }, Register)

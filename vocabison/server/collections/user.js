@@ -4,17 +4,16 @@ import {check, Match} from 'meteor/check';
 Meteor.methods({
     'user.add': function (userOptions) {
         let userId = '';
-
-        console.log('trying to create user');
+        //throw new Meteor.Error(500, "un message d'erreur, une putain de grosse mega erreur de ouf bla bla bla espèce de gorille ");
         try {
             userId = Accounts.createUser(userOptions);
-            Accounts.sendVerificationEmail(userId);
+            //Accounts.sendVerificationEmail(userId);
+            return userId;
         }
         catch (e) {
             console.log(e);
             throw new Meteor.Error(500, e.message)
         }
-
     }
     ,
     'user.login': function () {
